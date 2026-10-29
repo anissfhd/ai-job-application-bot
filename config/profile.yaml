@@ -1,0 +1,89 @@
+# =====================================================================
+#  PROFIL CANDIDAT — utilisé pour remplir les formulaires de candidature
+#  et pour vérifier que le CV / la LM générés gardent tes coordonnées.
+#
+#  RÈGLE : le robot n'invente JAMAIS une réponse. Si un formulaire exige
+#  une information absente d'ici, l'offre passe en « Action manuelle »
+#  avec le nom du champ manquant : ajoute-le ici et remets la ligne
+#  à « À traiter ».
+# =====================================================================
+
+identite:
+  civilite: "M."               # M. / Mme (laisser vide si tu ne veux pas le renseigner)
+  genre: "Homme"               # pour les formulaires qui posent la question (Homme / Femme)
+  prenom: "Omar"
+  nom: "El Amrani"
+  email: "omarelamrano@gmail.com"
+  telephone: "0675757575"   # écrit exactement comme dans le CV
+  adresse: "12 rue des Exemples, Agdal, Rabat"
+  code_postal: "10090"
+  ville: "Rabat"
+  pays: "Maroc"
+  nationalite: "Marocaine"
+  date_naissance: "08/03/2004" # JJ/MM/AAAA (optionnel)
+
+liens:
+  linkedin: "https://www.linkedin.com/in/omar_elamrani/"
+  github: "https://www.github.com/omar_elamrani/"
+  portfolio: ""
+
+formation:
+  ecole: "École d'Ingénieurs XX, Rabat"
+  diplome: "Diplôme d'ingénieur"
+  specialite: "Génie Informatique et Intelligence Artificielle"
+  annee_en_cours: "Dernière année du cycle ingénieur"
+  date_obtention_prevue: "2027"
+
+stage:
+  type: "Stage PFE"
+  duree: "6 mois"              # NE PAS MODIFIER
+  date_debut_souhaitee: "1er mars 2027"
+  pays_cibles: ["France"]
+  mobilite: "Mobilité internationale, disponible pour s'installer en France pendant 6 mois"
+  convention_de_stage: "Oui, stage conventionné (convention fournie par l'école)"
+
+langues:
+  - "Arabe : langue maternelle"
+  - "Français : bilingue"
+  - "Anglais : courant (B2)"
+
+# Réponses types aux questions fréquentes des formulaires.
+# Le robot les recopie telles quelles (ou les reformule sans rien ajouter).
+reponses_standard:
+  # « Êtes-vous autorisé(e) à travailler en France ? » -> Non (un stagiaire n'est pas salarié)
+  autorisation_travail: "Non, et elle n'est pas requise : un stage conventionné n'est pas un emploi salarié. Le stage se fera sous convention de stage tripartite (école / entreprise / moi), visée par la DREETS, avec un visa long séjour « stagiaire » (VLS-TS)."
+  autorisation_travail_oui_non: "Non"
+  # Selon le PAYS de la question :
+  #  « autorisé(e) à travailler en France / dans l'UE / en Europe ? » -> Non (il faut l'accord de
+  #    l'entreprise, via la convention de stage et le visa « stagiaire ») ;
+  #  « autorisé(e) à travailler au Maroc ? » -> Oui (je suis Marocain, dans mon pays).
+  autorisation_travail_france_ou_ue_oui_non: "Non"
+  autorisation_travail_maroc_oui_non: "Oui"
+  # « Aurez-vous besoin d'un visa / d'un parrainage ? » -> Oui
+  besoin_visa: "Oui : visa long séjour « stagiaire » (VLS-TS), obtenu après visa de la convention de stage par la DREETS (démarche faite en ligne par l'entreprise d'accueil, au moins 2 mois avant le début du stage) et procédure Campus France."
+  besoin_visa_oui_non: "Oui"
+  # Téléphone : la forme à saisir dépend du formulaire. Le robot choisissait au hasard
+  # entre trois écritures d'un même numéro ; ces deux valeurs lèvent l'ambiguïté.
+  telephone_sans_indicatif: "675757575"        # si un sélecteur d'indicatif (+212) existe à côté : SANS le 0 (+212 6… et non +212 06…)
+  telephone_avec_indicatif: "+212675757575"    # si le champ est seul, sans sélecteur de pays
+  # Niveau à choisir dans les menus déroulants « niveau de langue » des formulaires.
+  # Doit refléter la rubrique « langues » ci-dessus : ne jamais sous-déclarer.
+  niveau_anglais: "Full professional"
+  niveau_francais: "Native or bilingual"
+  niveau_arabe: "Native or bilingual"
+  gratification_souhaitee: "Selon la grille de l'entreprise"
+  # Même chose en CHIFFRES (montant mensuel brut, en euros) pour les champs qui n'acceptent
+  # qu'un nombre (Workday…). Vide = le robot ne peut pas remplir ces champs.
+  gratification_souhaitee_montant: "750"
+  comment_avez_vous_connu: "Site carrière de l'entreprise"
+  # Consentement à être recontacté par l'entreprise pour de futures opportunités : Oui
+  consentement_recontact: "Oui, j'accepte d'être recontacté(e) pour de futures opportunités"
+  handicap: "Je ne souhaite pas répondre"
+  permis_conduire: ""
+
+# Informations que le robot ne doit JAMAIS saisir dans un formulaire.
+ne_jamais_communiquer:
+  - numéro de passeport
+  - numéro de sécurité sociale
+  - coordonnées bancaires
+  - mots de passe

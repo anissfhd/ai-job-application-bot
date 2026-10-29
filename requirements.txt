@@ -1,0 +1,22 @@
+# Pilotage du navigateur (Chrome via CDP)
+tappi>=0.9
+
+# Fichier Excel de suivi
+openpyxl>=3.1
+pandas>=2.0          # optionnel : pratique pour analyser l'Excel à la main (non requis par les scripts)
+
+# Comptage des pages des PDF générés (garde-fou « 1 page »)
+pymupdf>=1.24
+
+# Utilise les certificats Windows/macOS (indispensable si un antivirus inspecte le HTTPS)
+truststore>=0.9
+
+# Configuration
+pyyaml>=6.0
+python-dotenv>=1.0
+
+# Fournisseurs LLM (seul celui choisi dans config.yaml est utilisé)
+openai>=1.50         # OpenAI (GPT) — payant, fournisseur par défaut
+google-genai>=1.0    # Gemini — remplace l'ancien paquet « google-generativeai », désormais obsolète
+groq>=0.9            # Groq (Llama) — gratuit
+anthropic>=1.0       # Claude — payant

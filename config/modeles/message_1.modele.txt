@@ -1,0 +1,31 @@
+Bonjour. Je suis {{PRESENTATION}}, et je cherche {{OBJECTIF}}. Tu vas m'aider à adapter MON CV et MA lettre de motivation à chaque offre à laquelle je postule. Ces documents sont envoyés à de vrais recruteurs, sous mon nom : ils doivent être convaincants ET entièrement vrais.
+
+RÈGLE ABSOLUE
+- Les titres de mes expériences s'adaptent exactement à ce qui est demandé par l'offre ; seuls le nom de l'entreprise, le lieu et la période restent fixes, inchangés.
+- Ne change pas les sections fixes de mon CV (formation, certifications, langues, soft skills…), ni son en-tête : {{ENTETE}}. Elles restent toujours identiques, quelle que soit l'offre.
+- Exception : les PROJETS. Pendant ma formation et mon parcours, j'ai réalisé de nombreux projets ; je ne peux pas tous te les lister. Pour les projets, tu peux donc écrire des projets de formation construits sur les technologies et les missions de l'offre (voir la règle « Projets » plus bas).
+- Les SEULS chiffres autorisés sont ceux que je te donnerai dans mon message suivant (« mes faits réels »). N'en crée aucun autre, même « réaliste », même arrondi.
+- Si un résultat n'a pas de chiffre réel, décris son impact avec des mots, sans nombre.
+- Cohérence des dates : n'attribue JAMAIS à une expérience une technologie ou une notion qui n'existait pas encore, ou qui ne figure pas dans les faits réels de CETTE expérience. Chaque expérience n'utilise que ses propres faits et technologies.
+- N'exagère pas et ne transforme pas un fait : reformuler oui, déformer non.
+
+QUALITÉ D'ÉCRITURE
+- Chaque phrase doit être claire et correcte : pas de fin de phrase vague, pas de mot vide.
+- Pas de répétition : un même mot technique n'apparaît pas dans deux puces du même bloc.
+- Chaque puce apporte une information différente et utile pour l'offre.
+
+CE QUE TU FAIS POUR CHAQUE OFFRE
+- Tu choisis, parmi mes faits réels, ceux qui correspondent le mieux à l'offre, et tu les reformules avec le vocabulaire de l'offre quand il décrit vraiment ce que j'ai fait.
+- Profil : 3 à 4 phrases orientées vers l'offre. Il mentionne toujours mon objectif : {{OBJECTIF}}.
+- Titre de chaque expérience : un intitulé de poste COURT (environ 3 à 6 mots), comme sur une fiche de poste. Pas de phrase descriptive dans le titre.
+- Expérience : mes {{NB_EXPERIENCES}} expériences réelles ({{EXPERIENCES}}) ; l'entreprise et la période sont fixes, écrites par le programme. Pour chacune : un titre adapté à l'offre et un texte fluide qui contient, SANS le signaler : ce que j'ai mis en place, le besoin concret de l'entreprise auquel cela répondait, puis ce que cela lui a apporté. Pas d'étiquettes du type « Problème : », « Solution : », « Résultat : ».
+- Début de paragraphe : commence TOUJOURS par le nom d'action en français (« Conception de… », « Analyse de… », « Mise en place de… ») ; jamais « Pour… », « Afin de… » en début de paragraphe, et un mot de départ DIFFÉRENT pour chaque expérience.
+- Chiffres d'impact : utilise mes résultats chiffrés RÉELS là où ils ont le plus de poids pour l'offre — chacun au plus UNE fois dans tout le CV, sans jamais en changer la valeur.
+- Projets : {{NB_PROJETS}} projets ADAPTÉS EXACTEMENT à l'offre. Pars des missions et des technologies demandées : chaque projet montre que je sais déjà faire une de ces missions avec ces technologies. Tu peux reprendre un de mes projets listés s'il correspond, sinon écrire un projet de formation qui correspond à l'offre. Ce sont des projets académiques ou personnels : jamais de client, d'entreprise ou d'utilisateurs réels, et aucun chiffre. Chaque projet se termine par ce qu'il a apporté ou démontré.
+- Style professionnel de CV, dans TOUT le CV : JAMAIS de « je », « j'ai », « mon », « ma », « mes ». En français, style nominal ; en anglais, chaque paragraphe commence par un VERBE D'ACTION au passé (« Designed… », « Built… »), un verbe différent pour chaque expérience.
+- Au plus DEUX noms de technologies dans un paragraphe : les autres vont dans la clé « …_TECH » ou dans les compétences.
+- Lisibilité : un recruteur RH NON technique doit comprendre chaque paragraphe à la première lecture.
+- Compétences : tu PEUX mettre en priorité les technologies et outils demandés par l'offre que je maîtrise, ordonnés selon l'offre. Mais dans les EXPÉRIENCES, une technologie n'apparaît que si elle figure dans les faits réels de cette expérience.
+- Langue : tout le texte est écrit dans la langue de l'offre (français ou anglais).
+
+Tu ne t'occupes pas de la mise en page : un programme place tes textes dans mon modèle LaTeX, qui ne change jamais. Tu fournis seulement les textes, au format que je te préciserai. Réponds « OK » si tu as compris, puis attends mon message suivant.

@@ -1,0 +1,49 @@
+# This repository ships a FICTIONAL example candidate on purpose (config/, input/, memoire/):
+# the files keep their exact structure so the project works right after cloning.
+# Once you put YOUR data in them, do not push your copy to a public repository.
+
+# --- Secrets: never commit ---
+.env
+input/Scraping/.env
+
+# --- Third-party extension: download it yourself (see INSTALLATION.md, step 4) ---
+extensions/nopecha/
+
+# --- Python ---
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# --- Generated while the robot runs ---
+output/Candidatures/*
+!output/Candidatures/.gitkeep
+output/captures/*
+!output/captures/.gitkeep
+logs/*
+!logs/.gitkeep
+rapports/*
+!rapports/.gitkeep
+input/sauvegardes/*
+!input/sauvegardes/.gitkeep
+input/Scraping/logs/*
+!input/Scraping/logs/.gitkeep
+input/Scraping/offres_scrapees.json
+config/sauvegardes_formulaire/
+config/formulaire_reponses.json
+*.tmp
+*.verrou
+
+# --- LaTeX build files ---
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+# --- Office / OS ---
+~$*.xlsx
+.DS_Store
+Thumbs.db
+
+# --- Old location of the private DeepSeek messages (the current ones are in config/deepseek/nouveaux/) ---
+config/deepseek/message_*.txt

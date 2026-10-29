@@ -1,0 +1,85 @@
+\documentclass[11pt,a4paper]{article}
+% Aucun lien cliquable dans les documents envoyés (ajouté automatiquement).
+\PassOptionsToPackage{draft}{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{helvet}
+\usepackage{setspace}
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{textgray}{HTML}{555555}
+
+\setlength{\parindent}{0pt}
+\setstretch{1.15}
+
+\begin{document}
+\pagestyle{empty}
+
+% En-tête avec titre et barre noire (fixe)
+\noindent
+\begin{tikzpicture}
+    \fill[black] (0,0) rectangle (0.8, 2.8);
+    \node[anchor=west, inner sep=0, font=\Huge\bfseries] at (1.4, 1.8) {Lettre de motivation};
+    \draw[thick, black] (0.8, 0.4) -- (10.5, 0.4);
+\end{tikzpicture}
+
+\vspace{0.8cm}
+
+% Destinataire (rempli par le programme depuis l'offre)
+\noindent
+\textbf{Entreprise}\\
+\textcolor{textgray}{Service Recrutement}
+
+\vspace{0.4cm}
+
+\hfill \textcolor{textgray}{Rabat, le 22 octobre 2026}
+
+\vspace{0.4cm}
+
+\noindent
+\textbf{Objet : Candidature -- Stage de fin d'études (PFE) de 6 mois -- Poste visé}
+
+\vspace{0.4cm}
+
+\noindent
+\textcolor{textgray}{Madame, Monsieur,}
+
+\vspace{0.3cm}
+
+% Corps : les 3 paragraphes rédigés par DeepSeek
+\noindent
+\textcolor{textgray}{Actuellement en dernière année du cycle ingénieur en Génie Informatique et Intelligence Artificielle à l'École d'Ingénieurs XX de Rabat, je recherche un stage de fin d'études (PFE) de 6 mois à partir du 1er mars 2027. Votre offre a retenu toute mon attention : elle correspond exactement aux domaines dans lesquels je souhaite approfondir mes compétences.}
+
+\vspace{0.4cm}
+
+\noindent
+\textcolor{textgray}{Lors de mon stage chez Société XX, j'ai conçu un modèle de classification de textes qui trie automatiquement les demandes clients, réduisant de 40 \% le temps moyen d'orientation d'une demande. Chez Société YY, j'ai automatisé le reporting mensuel des ventes avec SQL et Power BI, faisant gagner environ deux jours de préparation par mois à l'équipe finance. Ces expériences m'ont appris à livrer des solutions utiles, fiables et comprises par leurs utilisateurs.}
+
+\vspace{0.4cm}
+
+\noindent
+\textcolor{textgray}{Rejoindre votre équipe me permettrait de mettre ces compétences au service de vos projets tout en continuant à apprendre auprès de professionnels expérimentés. Curieux, organisé et à l'aise en équipe, je suis mobile et prêt à m'installer en France pendant toute la durée du stage.}
+
+\vspace{0.4cm}
+
+\noindent
+\textcolor{textgray}{Je me tiens à votre entière disposition pour un entretien. Je vous prie d'agréer, Madame, Monsieur, l'expression de mes respectueuses salutations.}
+
+\vfill
+
+% Signature et coordonnées (fixes)
+\hfill
+\begin{tikzpicture}
+    \node[anchor=east, align=left, inner sep=0, xshift=-15pt] at (0, 1.8) {
+        \textbf{Omar El Amrani}\\[0.1cm]
+        \textcolor{textgray}{Rabat, Maroc}\\
+        \textcolor{textgray}{omarelamrano@gmail.com}\\
+        \textcolor{textgray}{0675757575}
+    };
+    \fill[black] (0,0) rectangle (0.8, 3.8);
+\end{tikzpicture}
+
+\end{document}

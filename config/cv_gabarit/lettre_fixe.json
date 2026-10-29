@@ -1,0 +1,23 @@
+{
+  "fr": {
+    "L_TITRE_DOC": "Lettre de motivation",
+    "L_SERVICE": "Service Recrutement",
+    "L_DATE": "Rabat, le {date}",
+    "L_OBJET": "Objet : Candidature -- Stage de fin d'études (PFE) de 6 mois -- {poste}",
+    "L_SALUTATION": "Madame, Monsieur,",
+    "L_FORMULE": "Je me tiens à votre entière disposition pour un entretien. Je vous prie d'agréer, Madame, Monsieur, l'expression de mes respectueuses salutations.",
+    "L_VILLE_SIGNATURE": "Rabat, Maroc",
+    "MOIS": ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
+  },
+  "en": {
+    "L_TITRE_DOC": "Cover Letter",
+    "L_SERVICE": "Recruitment Team",
+    "L_DATE": "Rabat, {date}",
+    "L_OBJET": "Subject: Application -- 6-month end-of-studies internship (PFE) -- {poste}",
+    "L_SALUTATION": "Dear Hiring Manager,",
+    "L_FORMULE": "I would welcome the opportunity to discuss my application in an interview. Thank you for your time and consideration.",
+    "L_VILLE_SIGNATURE": "Rabat, Morocco",
+    "MOIS": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  },
+  "maximums": {"LM_P1": 420, "LM_P2": 560, "LM_P3": 420}
+}

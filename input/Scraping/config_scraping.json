@@ -1,0 +1,12 @@
+{
+  "excel": "../entreprises.xlsx",
+  "acteur": "curious_coder~linkedin-jobs-scraper",
+  "intervalle_minutes": 1440,
+  "offres_max_par_lien": 50,
+  "cout_max_par_passage_usd": 0.3,
+  "statut_nouvelles_offres": "À traiter",
+  "filtrer_depuis_dernier_passage": true,
+  "candidats_max": 100,
+  "priorite_easy_apply": true,
+  "verification_domaine": true
+}

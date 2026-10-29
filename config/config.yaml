@@ -1,0 +1,350 @@
+# =====================================================================
+#  CONFIGURATION GÉNÉRALE — job-automation
+#  Remplis les champs marqués « À REMPLIR ». Tout le reste a des valeurs
+#  par défaut raisonnables.
+#  Astuce : les clés API peuvent aussi être mises dans un fichier .env
+#  (voir .env.example) ; elles sont alors prioritaires sur ce fichier.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# 1. Modèle de langage (LLM) utilisé pour personnaliser CV / LM et
+#    piloter le remplissage des formulaires.
+# ---------------------------------------------------------------------
+llm:
+  # Fournisseur actif : openai (payant) | gemini (gratuit) | groq (gratuit) | claude (payant)
+  fournisseur: openai
+
+  openai:
+    cle_api: ""                      # clé dans .env (OPENAI_API_KEY) — prioritaire sur ce champ
+    modele: gpt-5.4-mini             # textes : lecture de l'offre, CV, lettre (bon rapport qualité/prix)
+    modele_formulaire: gpt-5.4       # remplissage des formulaires avec vision (plus puissant)
+    modele_diagnostic: gpt-5.4       # bilan des tentatives, rattrapage, choix du site carrière
+
+  gemini:
+    cle_api: ""                      # À REMPLIR — https://aistudio.google.com/apikey
+    modele: gemini-2.5-flash
+  groq:
+    cle_api: ""                      # optionnel — https://console.groq.com/keys
+    modele: llama-3.3-70b-versatile
+  claude:
+    cle_api: ""                      # optionnel — https://console.anthropic.com
+    modele: claude-opus-5
+
+  # Moteur du REMPLISSAGE DE FORMULAIRE uniquement (le reste — lecture de l'offre, CV,
+  # lettre, diagnostic — continue d'utiliser `fournisseur` ci-dessus) :
+  #   api          -> le fournisseur configuré ci-dessus (OpenAI par défaut)
+  #   deepseek_formulaire -> le CHAT WEB DeepSeek, piloté dans son propre onglet
+  #                   (aucune clé API consommée ; vision conservée)
+  #   gemini_chat  -> le CHAT WEB Gemini de ton abonnement — conservé, mais DÉSACTIVÉ
+  #                   (voir candidature.py : le branchement est en commentaire)
+  moteur_formulaire: deepseek_formulaire
+
+  temperature: 0.3                   # ignoré pour Claude (non supporté)
+  max_tokens_sortie: 16000
+  tentatives_api: 5                  # nouvelles tentatives en cas d'erreur 429 / 5xx
+  pause_entre_appels_secondes: 1     # mets 4 avec Gemini/Groq gratuits (quotas par minute)
+
+# ---------------------------------------------------------------------
+# 1 bis-bis. CHAT WEB DeepSeek pour le FORMULAIRE
+#   (utilisé si llm.moteur_formulaire = deepseek_formulaire).
+#   Onglet DISTINCT de celui qui rédige le CV/la lettre : une conversation = UNE
+#   candidature, ouverte au premier besoin puis fermée à la fin.
+# ---------------------------------------------------------------------
+deepseek_formulaire:
+  url: "https://chat.deepseek.com/"
+  envoyer_captures: true             # joindre la capture d'écran de la page (vision)
+  timeout_reponse_secondes: 120      # temps max d'attente d'UNE réponse
+  delai_demarrage_secondes: 30       # DeepSeek n'a pas COMMENCÉ à répondre après ce délai -> échec immédiat
+  stabilite_secondes: 4              # réponse finie si le texte ne bouge plus pendant N s
+  # Indisponibilité du chat (« Le serveur est occupé, réessayez plus tard », délai dépassé) :
+  # presque toujours passagère. On repose la question en espaçant, et on n'abandonne qu'après
+  # le dernier essai. Ce n'est PAS le texte du message qui déclenche, c'est sa persistance.
+  reessais_indisponibilite: 2            # nombre total de tentatives pour UNE question
+  pauses_indisponibilite_secondes: [10, 30]        # attente avant la 2e, la 3e, etc.
+  # Si l'indisponibilité DURE malgré ces essais, le compte de CE navigateur est saturé :
+  # le robot bascule sur le navigateur suivant (voir navigateur.navigateurs_secours) et
+  # reprend la candidature depuis le début. Il ne se déconnecte jamais de rien.
+  # true  = le BILAN de fin de candidature se fait dans CETTE conversation : le modèle y a
+  #         vu les pages, son diagnostic et ses leçons sont plus justes.
+  # false = bilan dans une conversation dédiée (comportement précédent).
+  bilan_dans_le_chat: true
+
+# ---------------------------------------------------------------------
+# 1 ter. CHAT WEB Gemini (utilisé si llm.moteur_formulaire = gemini_chat).
+#   Une conversation = UNE candidature : ouverte au premier besoin dans son propre
+#   onglet, puis FERMÉE à la fin. Le profil et l'offre ne sont envoyés qu'une fois.
+# ---------------------------------------------------------------------
+gemini_chat:
+  url: "https://gemini.google.com/u/2/app?hl=fr"   # /u/2/ = le compte qui porte l'abonnement
+  envoyer_captures: true             # joindre la capture annotée (vision, comme avec GPT)
+  timeout_reponse_secondes: 120
+  stabilite_secondes: 4              # réponse considérée finie si le texte ne bouge plus
+
+# ---------------------------------------------------------------------
+# 1 bis. Génération CV/LM via le CHAT DeepSeek (au lieu de l'API GPT) -> coût réduit.
+#   Le robot ouvre un NOUVEAU chat, envoie tes 3 messages privés (config/deepseek/
+#   message_1/2/3.txt, que TU remplis), puis les inputs (offre + CV + LM originaux),
+#   et récupère le CV + la LM en LaTeX. GPT n'est utilisé QUE pour réduire à 1 page.
+# ---------------------------------------------------------------------
+deepseek_chat:
+  actif: true                        # true = utiliser DeepSeek pour générer CV+LM
+  url: "https://chat.deepseek.com/"  # ouvre une nouvelle conversation à chaque offre
+  dossier_messages: config/deepseek/nouveaux  # 3 fichiers message_1.txt / _2 / _3 (privés)
+  # gabarit = « gabarit à trous » (config/cv_gabarit) : DeepSeek n'écrit que les textes,
+  #           mise en page fixe, 1 page garantie par mesure ; latex = ancien mode (LaTeX complet)
+  mode_cv: gabarit
+  # true  = l'onglet DeepSeek reste ouvert entre les offres (les 3 messages privés ne sont
+  #         envoyés qu'une fois : ~40 s gagnées par candidature)
+  # false = l'onglet est refermé après chaque candidature (plus propre, mais plus lent)
+  reutiliser_conversation: true
+  offres_par_conversation: 10        # nouvelle conversation CV toutes les N offres (règles toujours récentes)
+  attente_max_secondes: 300          # temps max d'attente d'UNE réponse DeepSeek
+  delai_demarrage_secondes: 30       # DeepSeek n'a pas COMMENCÉ à répondre après ce délai -> échec immédiat
+  stabilite_secondes: 3.5            # réponse DeepSeek finie si le texte ne bouge plus pendant N s
+  attente_min_secondes: 2            # délai mini avant de conclure « fini »
+  # Indisponibilité de DeepSeek pendant la rédaction du CV/lettre : mêmes règles que pour le
+  # chat du formulaire. Si elle persiste, le compte est saturé -> bascule de navigateur.
+  reessais_indisponibilite: 2
+  pauses_indisponibilite_secondes: [10, 30]
+  reduire_1page_avec_gpt: true       # si un doc dépasse 1 page, GPT le raccourcit
+  reutiliser_conversation: true      # garde le même chat ouvert : les 3 messages privés
+                                     # ne sont envoyés qu'UNE fois par session (~1 min gagnée/offre)
+
+# ---------------------------------------------------------------------
+# 1 quater. SECOURS VISION (scripts/secours_vision.py) — utilisé UNIQUEMENT quand le robot est
+#   bloqué, juste avant d'abandonner une candidature (page figée, « manuel », « échec »). Un
+#   modèle qui VOIT la capture clique aux coordonnées, débloque l'étape, puis rend la main au
+#   robot normal. Jamais l'envoi final, jamais un CAPTCHA / une connexion / un compte.
+#   Sans clé (ou si l'API refuse : pas de crédit…), il s'écarte en silence : le robot se
+#   comporte exactement comme avant.
+# ---------------------------------------------------------------------
+secours_vision:
+  actif: false                       # DÉSACTIVÉ : aucun appel à NVIDIA / OpenAI / Claude (true pour le réactiver)
+  # Essayés DANS L'ORDRE ; un fournisseur sans clé est ignoré. S'il refuse (clé invalide,
+  # crédits épuisés), il est écarté pour la session et le suivant prend le relais.
+  # Toutes les clés vides = secours désactivé (aucun effet sur le robot).
+  fournisseurs:
+    - nom: nvidia                    # 1er : GRATUIT — build.nvidia.com -> « Get API Key » (nvapi-…)
+      modele: moonshotai/kimi-k3     # testé : clique au pixel près (~45 s par action)
+      cle_api: ""
+    - nom: nvidia                    # même clé, autre modèle si Kimi ne répond pas
+      modele: google/gemma-4-31b-it
+      cle_api: ""
+    - nom: openai                    # 2e : payant — https://platform.openai.com
+      modele: gpt-5.4                # le modèle vision de llm.openai
+      cle_api: ""
+    - nom: claude                    # 3e : payant — https://console.anthropic.com
+      modele: claude-sonnet-5
+      cle_api: ""
+  max_actions: 8                     # clics / saisies au plus par déblocage
+  delai_reponse_secondes: 30         # un modèle qui ne répond pas dans ce délai est mis de côté…
+  pause_lent_minutes: 30             # … pendant ce temps (les modèles gratuits sont souvent saturés)
+  max_secours_par_candidature: 2
+  largeur_capture: 1280              # capture réduite à cette largeur (coût et précision)
+
+# ---------------------------------------------------------------------
+# 2. Chemins (relatifs à la racine du projet)
+# ---------------------------------------------------------------------
+chemins:
+  excel: input/entreprises.xlsx
+  cv_original: input/cv_original.tex
+  lm_original: input/lm_original.tex
+  sortie: output/Candidatures
+  logs: logs
+  prompts: prompts
+  memoire: memoire                   # leçons apprises par site + état du robot
+
+# ---------------------------------------------------------------------
+# 3. Compilation LaTeX
+# ---------------------------------------------------------------------
+latex:
+  # pdflatex | xelatex | lualatex  (xelatex si ton CV utilise fontspec)
+  moteur: pdflatex
+  passes: 2
+  timeout_secondes: 180
+
+# ---------------------------------------------------------------------
+# 4. Navigateur piloté par Tappi (Chrome via le protocole CDP)
+# ---------------------------------------------------------------------
+navigateur:
+  cdp_url: http://127.0.0.1:9222
+  lancer_automatiquement: true       # lance Chrome si aucun n'écoute sur cdp_url
+  # Profil Chrome dédié : tes connexions (LinkedIn, WTTJ, JobTeaser…) et tes
+  # extensions (ClipFile, Agentex, CandidateFacile…) y sont conservées.
+  profil_chrome: ~/.tappi/job-automation
+  # NAVIGATEURS DE SECOURS — un Chrome complet par compte de chat.
+  # Chacun doit être préparé UNE FOIS à la main, et contenir :
+  #   · ton compte de candidature (omarelamrano@gmail.com) connecté à LinkedIn & co. ;
+  #   · UN compte DeepSeek différent, déjà connecté.
+  # Quand le chat du navigateur courant est saturé, le robot bascule sur le suivant et
+  # RECOMMENCE la candidature depuis le début. Aucune déconnexion, aucun mot de passe.
+  # Pour préparer un profil : lance Chrome avec
+  #   chrome.exe --remote-debugging-port=<port> --user-data-dir=<profil>
+  # puis connecte-toi aux sites dans la fenêtre qui s'ouvre.
+  navigateurs_secours:
+    - {profil: ~/.tappi/job-automation-2, port: 9223}   # DeepSeek : compte 2
+    - {profil: ~/.tappi/job-automation-3, port: 9224}   # DeepSeek : compte 3
+    - {profil: ~/.tappi/job-automation-4, port: 9225}   # DeepSeek : compte 4
+  chemin_chrome: ""                  # vide = détection automatique
+  headless: false                    # true sur un VPS sans écran
+  delai_chargement_secondes: 1.5     # attente max après navigation (attente INTELLIGENTE : on
+                                     # continue dès que la page a du contenu, sans attendre la fin)
+  # Attente minimale après un clic. Elle est complétée par une attente INTELLIGENTE qui rend
+  # la main dès que la page a fini de bouger (modale ouverte, contenu chargé).
+  delai_action_secondes: 0.8
+
+# ---------------------------------------------------------------------
+# 5. Comportement des candidatures
+# ---------------------------------------------------------------------
+candidature:
+  # false = le robot remplit tout mais NE CLIQUE PAS sur « Envoyer »
+  # (statut « Prêt (test) »). Idéal pour vérifier les premières offres.
+  soumission_automatique: true
+  max_etapes_formulaire: 60          # nombre max d'allers-retours LLM par formulaire
+                                     # (~14 s par étape : 60 = 15 min max pour une tentative.
+                                     #  Les formulaires Workday font 5 pages et en demandent
+                                     #  25 à 35 ; 60 laisse le double de marge sans qu'une
+                                     #  offre puisse bloquer la file une demi-heure.)
+  duree_max_offre_minutes: 25        # CHIEN DE GARDE : durée max d'UNE offre, tentatives et
+                                     # rattrapages compris. Au-delà : « Action manuelle » et offre
+                                     # suivante (les plus longues réussites ont pris 13 min).
+                                     # 0 = pas de limite.
+  max_tentatives_par_offre: 1       # une offre en « Erreur » est retentée jusqu'à N fois
+                                     # (1 = plus de reprise automatique : c'est toi qui décides
+                                     #  de la relancer, en remettant « À traiter » dans l'Excel)
+  max_candidatures_par_jour: 0       # 0 = AUCUNE limite : le robot ne s'arrête jamais tant qu'il
+                                     # reste des offres (sinon : pause jusqu'au lendemain 8 h)
+  pause_entre_candidatures_secondes: [5, 10]    # pause courte entre deux offres (anti-blocage minimal)
+  intervalle_verification_minutes: 10            # quand l'Excel est vide, on revérifie toutes les N min
+  utiliser_cv_original_si_echec: true            # si la personnalisation du CV échoue 3 fois
+  vision: true                                   # envoie une capture d'écran annotée au LLM
+  vision_periode_etapes: 3                       # capture envoyée au moins toutes les N étapes
+                                                 # (sinon : seulement quand la page change -> plus rapide)
+  playbooks: true                                # rejoue sans LLM les séquences déjà réussies sur un site
+  preremplissage_local: true                     # remplit prénom/nom/email/téléphone/ville sans LLM
+  connexion_google: true                         # clique « Continuer avec Google » si la session
+                                                 # Google du Chrome du robot existe (jamais de mot de passe)
+  rattrapage_automatique: true                   # après un échec : diagnostic + nouvelle tentative
+  rattrapages_max: 0                             # 0 = UNE seule tentative, pas de reprise depuis
+                                                 # zéro après un échec (chacune refaisait LinkedIn,
+                                                 # cookies, SSO Google et tout le formulaire).
+                                                 # Le diagnostic et la leçon restent enregistrés.
+  # Le robot ne touche à AUCUNE case à cocher. true = l'autoriser à cocher UNIQUEMENT
+  # un consentement OBLIGATOIRE pour postuler (traitement des données / Privacy Notice de
+  # CETTE candidature). Il ne touche jamais aux cases marketing (newsletter, alertes, suivi).
+  cocher_consentement_obligatoire: true
+  # Connexion et compte candidat : le robot se connecte, crée le compte si besoin et confirme
+  # l'email lui-même (règle 3 du prompt ; mot de passe = MOT_DE_PASSE_SITES dans .env).
+  # Il ne s'arrête que pour un CAPTCHA à défi, une vérification par SMS ou une inscription
+  # impossible. Dans ces cas :
+  # false = il marque l'offre « Action manuelle » et passe IMMÉDIATEMENT à la suivante.
+  # true  = il fait bip et attend un geste humain dans son Chrome, puis reprend.
+  pause_intervention_humaine: false
+  attente_humaine_secondes: 90       # (si true) temps max d'attente avant de passer à la suite
+  # Mode 5 (« postuler à tout ») UNIQUEMENT : durée d'attente d'un geste humain dans ces
+  # mêmes cas, même si pause_intervention_humaine est à false.
+  # 0 = aucune attente : « Action manuelle » tout de suite, puis offre suivante.
+  attente_inscription_secondes: 0
+  # DeepSeek saturé sur TOUS les navigateurs d'affilée (tour complet sans une réponse) : ce
+  # n'est plus un compte mais DeepSeek ou l'adresse IP. Le robot remet l'offre en attente et
+  # fait une pause de cette durée avant de reprendre la rotation, au lieu de brûler la liste.
+  pause_saturation_minutes: 15
+
+# ---------------------------------------------------------------------
+# 6. Garde-fous : textes qui DOIVENT rester présents mot pour mot
+#    (en plus de ton nom, prénom, email et téléphone lus dans profile.yaml)
+# ---------------------------------------------------------------------
+garde_fous:
+  chaines_obligatoires_cv:
+    - "stage PFE conventionné de 6 mois"
+    - "Disponible à partir de mars 2027"
+  # Nombre maximal de pages des PDF générés (sinon le LLM doit raccourcir)
+  pages_max_cv: 1
+  # Un document qui tient sur la page mais la remplit moins que ce taux est jugé TROP COURT
+  # et enrichi une fois (re-détailler ce qui a été trop condensé, sans rien inventer).
+  # Ton CV original remplit 96 %. Mettre 0 pour désactiver ce contrôle.
+  # 0 = désactivé pour l'instant : l'enrichissement a fait perdre des candidatures quand le
+  # modèle renvoyait du LaTeX invalide. À repasser à 92 une fois le nominal confirmé.
+  remplissage_minimum_pourcent: 0
+  pages_max_lm: 1
+  # La LM est en plus toujours vérifiée : elle doit mentionner « 6 mois » (ou « 6 months »).
+  chaines_obligatoires_lm: []
+
+# ---------------------------------------------------------------------
+# 7. Rapport quotidien (enregistré dans rapports/ ; envoyé par email si
+#    la section « email » ci-dessous a un utilisateur + mot de passe)
+# ---------------------------------------------------------------------
+rapport:
+  actif: true
+  heure: "20:00"                     # chaque jour, dès que cette heure est passée
+  envoyer_par_email: true
+  destinataire: ""                   # vide = ton email de profile.yaml
+  dossier: rapports
+
+# ---------------------------------------------------------------------
+# 9. TEST CAPTCHA — outil ISOLÉ (scripts/test_captcha.py)
+#    Sert à tester l'API 2Captcha (https://2captcha.com) sur TON PROPRE SITE
+#    (vérifier une protection, mesurer temps de résolution et taux de réussite).
+#    Ce module n'est JAMAIS utilisé par les candidatures : orchestrator.py et
+#    candidature.py ne l'importent pas.
+# ---------------------------------------------------------------------
+captcha_test:
+  cle_api: ""                        # clé 2Captcha ; peut aussi être dans .env (TWOCAPTCHA_API_KEY)
+  # GARDE-FOU : le script refuse toute URL qui n'est pas dans cette liste.
+  # Mets le domaine de TON site. Vide = le script refuse de tourner.
+  domaines_autorises: []             # ex. ["mon-site.com", "www.mon-site.com"]
+  timeout_secondes: 180              # attente max d'une résolution
+  pause_verification_secondes: 5     # intervalle entre deux vérifications du résultat
+# ---------------------------------------------------------------------
+# 10. Résolution automatique des CAPTCHA dans les candidatures
+#     (reCAPTCHA v2, hCaptcha, Turnstile — uniquement les types « checkbox »,
+#     pas les grilles d'images ni les puzzles complexes).
+#     Clé API 2Captcha : TWOCAPTCHA_API_KEY dans .env (prioritaire) ou captcha.cle_api ici.
+# ---------------------------------------------------------------------
+#     Remplacé par NopeCHA (section 11) : laisser actif à false.
+captcha:
+  actif: false                 # true = résoudre automatiquement via 2Captcha avant d'alerter l'humain
+  cle_api: ""                  # clé 2Captcha (ou TWOCAPTCHA_API_KEY dans .env — prioritaire)
+  timeout_secondes: 120        # attente max pour recevoir le jeton de 2Captcha
+  pause_verification_secondes: 5   # intervalle de polling du résultat 2Captcha
+
+# ---------------------------------------------------------------------
+# 11. NopeCHA — extension de résolution de CAPTCHA chargée dans le Chrome du robot
+#     (reCAPTCHA, hCaptcha, Turnstile…). Le robot attend qu'elle ait résolu, puis reprend.
+#     Chrome officiel ignore --load-extension : charge-la UNE fois dans chaque profil robot
+#     (chrome://extensions > Mode développeur > Charger l'extension non empaquetée >
+#     dossier ci-dessous). Clé API éventuelle : champ "key" de extensions/nopecha/manifest.json.
+# ---------------------------------------------------------------------
+nopecha:
+  actif: true
+  dossier_extension: extensions/nopecha
+  attente_resolution_secondes: 45   # attente MAX (le robot repart dès que c'est résolu)
+
+# ---------------------------------------------------------------------
+# 8. Candidatures par email (quand l'offre dit « envoyez votre CV à … »)
+#    Désactivé par défaut. Pour Gmail : crée un « mot de passe
+#    d'application » (https://myaccount.google.com/apppasswords).
+# ---------------------------------------------------------------------
+# SCRAPING AUTOMATIQUE quand l'Excel n'a plus aucune offre « À traiter » : le robot lance
+# lui-même un passage de scraping — exactement la logique de input/Scraping/LANCER_SCRAPING.bat
+# (même fonction : Apify, filtre < 100 candidats, Easy Apply d'abord, nettoyage, doublons ignorés,
+# insertion dans l'Excel) — puis traite aussitôt les offres ajoutées.
+# Au plus UN passage toutes les `intervalle_min_heures` (manuel ou automatique) : chaque passage
+# coûte ~0,30 $ sur Apify.
+scraping_auto:
+  actif: true
+  intervalle_min_heures: 2
+
+# Candidature PAR EMAIL via Gmail (dans le Chrome du robot, déjà connecté) : utilisée quand
+# l'offre donne une VRAIE adresse de candidature — offre « envoyez votre candidature à … », ou
+# formulaire en « Action manuelle ». DeepSeek rédige l'email (objectif : stage PFE de 6 mois),
+# le robot joint le CV + la lettre et envoie. Jamais d'adresse devinée.
+candidature_gmail:
+  actif: true
+
+email:
+  actif: false
+  smtp_serveur: smtp.gmail.com
+  smtp_port: 587
+  utilisateur: ""                    # ton adresse email
+  mot_de_passe: ""                   # mot de passe d'application (PAS ton mot de passe principal)

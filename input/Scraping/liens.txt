@@ -1,0 +1,29 @@
+# Liens de recherche LinkedIn à surveiller, UN PAR LIGNE.
+# Les lignes qui commencent par # sont ignorées.
+#
+# Comment obtenir un lien : ouvre https://www.linkedin.com/jobs/search dans une fenêtre de
+# navigation PRIVÉE (version publique de LinkedIn), fais ta recherche avec tes filtres
+# (mots-clés, lieu, stage…), puis copie l'adresse de la page ici.
+#
+# Inutile d'ajouter le filtre de date : le programme ajoute lui-même « publiées depuis le
+# dernier passage » (24 h) et le tri par date. « Moins de 100 candidats » est appliqué par le
+# programme (réglage candidats_max). Utilise le format /jobs/search/ (pas /jobs/search-results/,
+# la recherche « IA » de LinkedIn, que l'acteur Apify n'arrive pas à ouvrir).
+#
+# Exemple :
+# https://www.linkedin.com/jobs/search/?keywords=stage%20data%20scientist&location=France
+
+# stage pfe data — France (Easy Apply placées en premier : réglage priorite_easy_apply)
+https://www.linkedin.com/jobs/search/?keywords=stage%20pfe%20data&location=France
+
+# ingénieur IA stage — France
+https://www.linkedin.com/jobs/search/?keywords=ing%C3%A9nieur%20IA%20stage&location=France
+
+# stage IA — France
+https://www.linkedin.com/jobs/search/?keywords=stage%20IA&location=France
+
+# stage software engineer — France
+https://www.linkedin.com/jobs/search/?keywords=stage%20software%20engineer&location=France
+
+# stage développement web — France
+https://www.linkedin.com/jobs/search/?keywords=stage%20d%C3%A9veloppement%20web&location=France

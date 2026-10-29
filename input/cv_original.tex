@@ -1,0 +1,176 @@
+\documentclass[11pt,a4paper]{extarticle}
+% Aucun lien cliquable dans les documents envoyés (ajouté automatiquement).
+\PassOptionsToPackage{draft}{hyperref}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\frenchsetup{StandardItemLabels=true} % puces « • » comme la version anglaise
+\usepackage[top=0.5cm, bottom=0.5cm, left=0.6cm, right=0.6cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{graphicx}
+
+% Couleurs
+\definecolor{primary}{RGB}{15, 15, 15}
+\definecolor{bodytext}{RGB}{50, 50, 50}
+\definecolor{cadregris}{RGB}{215, 215, 212}
+
+\hypersetup{colorlinks=true, linkcolor=primary, urlcolor=primary}
+
+% Design des sections : espacements resserrés
+\titleformat{\section}
+  {\large\bfseries\color{primary}}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{3pt}{2pt}
+
+% Commande gras
+\let\oldtextbf\textbf
+\renewcommand{\textbf}[1]{\textcolor{primary}{\oldtextbf{#1}}}
+
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{0.92}
+
+% Listes optimisées : compact
+\setlist[itemize]{label=\textemdash, labelsep=0.4em, leftmargin=1.6em, itemsep=0.8pt, parsep=0pt, topsep=0.8pt, partopsep=0pt}
+
+\begin{document}
+\pagestyle{empty}
+\color{bodytext}
+
+% ================= HEADER =================
+\noindent
+\begin{minipage}[c]{\textwidth}
+    \centering
+    {\LARGE \textbf{Omar El Amrani}}\\[1pt]
+    {\large \textbf{Étudiant en dernière année du cycle d'ingénieur}}\\[1pt]
+    {\normalsize \textit{Élève-ingénieur en Génie Informatique \& IA -- École XX, Rabat}}\\[1pt]
+    {\normalsize \textbf{Recherche d'un stage PFE conventionné de 6 mois à partir du 1\textsuperscript{er} mars 2027}}\\[2pt]
+    \footnotesize
+    \textbf{Téléphone :} \href{tel:0675757575}{0675757575} \quad|\quad
+    \textbf{Email:} \href{mailto:omarelamrano@gmail.com}{omarelamrano@gmail.com} \\[3pt]
+    {\large \textbf{\href{https://www.github.com/omar_elamrani/}{www.github.com/omar\_elamrani/}} \quad\textbar\quad \textbf{\href{https://www.linkedin.com/in/omar_elamrani/}{www.linkedin.com/in/omar\_elamrani/}}}
+\end{minipage}
+
+\vspace{1pt}
+
+% ================= PROFILE =================
+\section*{Profil}
+Élève-ingénieur en Génie Informatique \& IA, à la recherche d'un stage PFE de 6 mois à partir du 1er mars 2027. Expérience pratique en traitement du langage, vision par ordinateur, analyse de données et développement web. Conception de pipelines de machine learning fiables, de tableaux de bord clairs et d'applications web bien testées. Curieux, organisé, rigoureux et à l'aise en équipe.
+
+% ================= PROFESSIONAL EXPERIENCE =================
+\section*{Expérience Professionnelle}
+
+% Entreprise et période : FIXES (écrites par le programme). Seuls le titre et le paragraphe
+% sont adaptés à l'offre.
+\textbf{Stage chez Société XX} \hfill \textit{Juil. 2026 -- Août 2026} \\
+\textit{Stagiaire Ingénieur Machine Learning}
+\begin{itemize}
+\item Conception d'un modèle de classification de textes avec Python et Hugging Face qui trie automatiquement les demandes clients par sujet et par urgence, jusque-là triées à la main, réduisant de 40 \% le temps moyen d'orientation d'une demande et permettant au support de traiter d'abord les cas urgents.
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{Stage chez Société YY} \hfill \textit{Juil. 2025 -- Août 2025} \\
+\textit{Data Analyst – Reporting des ventes}
+\begin{itemize}
+\item Automatisation du reporting mensuel des ventes avec SQL et Power BI, jusque-là compilé à la main dans des tableurs à partir de plusieurs sources, offrant aux managers une vue à jour des ventes par région et par produit et faisant gagner environ deux jours de préparation par mois à l'équipe finance.
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{Stage chez Société ZZ} \hfill \textit{Juil. 2024 -- Août 2024} \\
+\textit{Développeur Web}
+\begin{itemize}
+\item Développement d'une application web interne avec Flask et PostgreSQL pour suivre les prêts de matériel entre services, jusque-là notés sur des fiches papier, donnant au personnel un seul endroit pour savoir qui détient chaque équipement et réduisant les pertes ainsi que le temps passé à le chercher.
+\end{itemize}
+
+% ================= PROJECTS & FREELANCE =================
+\section*{Projets \& Missions Freelance}
+
+\textbf{Détection de maladies des plantes par image} \hfill \textit{TensorFlow, Keras, CNN}
+\begin{itemize}
+\item Affinage d'un réseau convolutif pré-entraîné sur un jeu public de photos de feuilles pour reconnaître des maladies courantes, montrant que l'augmentation de données rend le modèle plus robuste.
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{Analyse de sentiments d'avis clients} \hfill \textit{PyTorch}
+\begin{itemize}
+\item Comparaison d'un modèle TF-IDF classique et d'un modèle BERT affiné pour classer des avis produits en positifs ou négatifs, en identifiant l'approche qui gère le mieux l'ironie.
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{Prévision de la consommation d'énergie} \hfill \textit{LSTM, Prophet, Pandas}
+\begin{itemize}
+\item Modèles LSTM et Prophet prévoyant la consommation électrique quotidienne d'un bâtiment à partir de données ouvertes, comparés pour retenir le modèle le plus fiable pour la planification.
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{Application web de recommandation de films} \hfill \textit{FastAPI, React}
+\begin{itemize}
+\item Application web recommandant des films à partir des notes des utilisateurs par factorisation de matrices, exposée via une API REST, et proposant des titres plus variés qu'un simple classement.
+\end{itemize}
+
+% ================= EDUCATION =================
+\section*{Formation}
+
+\textbf{2024 - Présent : Cycle d'ingénieur en Génie Informatique et IA} \hfill \textbf{École XX, Rabat} \\
+\textit{Axes d'étude :} Génie logiciel, Machine Learning, NLP, Vision par ordinateur, Cloud, Bases de données.
+
+\vspace{1pt}
+
+\textbf{2022 - 2024 : Classes préparatoires intégrées} \hfill \textbf{École XX, Rabat}
+
+\vspace{1pt}
+
+\textbf{2021 - 2022 : Baccalauréat en Sciences Physiques} \hfill \textbf{Lycée XX, Rabat}
+
+% ================= TECHNICAL SKILLS =================
+\section*{Compétences Techniques}
+\begin{itemize}
+    \item \textbf{IA \& Data Science:} Python, TensorFlow, Keras, Scikit-learn, Hugging Face, OpenCV, Pandas, NumPy, NLP, vision par ordinateur, séries temporelles, MLOps, SQL.
+    \item \textbf{Génie logiciel et données :} Java, Spring Boot, C/C++, .NET, JavaScript, React, Angular, Node.js, Flask, FastAPI, Docker, Kubernetes, Git, GitHub Actions, Linux, PostgreSQL, Oracle, MongoDB, Elasticsearch, Apache Kafka, Airflow, AWS, Azure, Tableau.
+\end{itemize}
+
+% ================= CERTIFICATIONS =================
+\section*{Certifications}
+\setlength{\multicolsep}{0pt}
+\begin{multicols}{2}
+\begin{itemize}
+    \item Python for Data Science
+    \item Machine Learning Foundations
+    \item Natural Language Processing Basics
+    \item Cloud Computing Fundamentals
+    \item SQL and Relational Databases
+    \item Docker \& Kubernetes Essentials
+\end{itemize}
+\end{multicols}
+
+\vspace{1pt}
+
+% ================= LANGUAGES & SOFT SKILLS =================
+\begin{minipage}[t]{0.48\textwidth}
+    \section*{Langues}
+    \begin{itemize}
+        \item \textbf{Arabe :} Maternelle
+        \item \textbf{Français :} Bilingue
+        \item \textbf{Anglais :} Courant (B2)
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \section*{Soft Skills}
+    \begin{itemize}
+        \item Curiosité et esprit d'initiative
+        \item Communication et travail en équipe
+        \item Organisation et sens des priorités
+    \end{itemize}
+\end{minipage}
+
+\end{document}

@@ -1,0 +1,83 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{helvet}
+\usepackage{setspace}
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{textgray}{HTML}{555555}
+
+\setlength{\parindent}{0pt}
+\setstretch{1.15}
+
+\begin{document}
+\pagestyle{empty}
+
+% En-tête avec titre et barre noire (fixe)
+\noindent
+\begin{tikzpicture}
+    \fill[black] (0,0) rectangle (0.8, 2.8);
+    \node[anchor=west, inner sep=0, font=\Huge\bfseries] at (1.4, 1.8) {<<L_TITRE_DOC>>};
+    \draw[thick, black] (0.8, 0.4) -- (10.5, 0.4);
+\end{tikzpicture}
+
+\vspace{0.8cm}
+
+% Destinataire (rempli par le programme depuis l'offre)
+\noindent
+\textbf{<<L_ENTREPRISE>>}\\
+\textcolor{textgray}{<<L_SERVICE>><<L_VILLE>>}
+
+\vspace{0.4cm}
+
+\hfill \textcolor{textgray}{<<L_DATE>>}
+
+\vspace{0.4cm}
+
+\noindent
+\textbf{<<L_OBJET>>}
+
+\vspace{0.4cm}
+
+\noindent
+\textcolor{textgray}{<<L_SALUTATION>>}
+
+\vspace{0.3cm}
+
+% Corps : les 3 paragraphes rédigés par DeepSeek
+\noindent
+\textcolor{textgray}{<<LM_P1>>}
+
+\vspace{0.4cm}
+
+\noindent
+\textcolor{textgray}{<<LM_P2>>}
+
+\vspace{0.4cm}
+
+\noindent
+\textcolor{textgray}{<<LM_P3>>}
+
+\vspace{0.4cm}
+
+\noindent
+\textcolor{textgray}{<<L_FORMULE>>}
+
+\vfill
+
+% Signature et coordonnées (fixes)
+\hfill
+\begin{tikzpicture}
+    \node[anchor=east, align=left, inner sep=0, xshift=-15pt] at (0, 1.8) {
+        \textbf{Omar El Amrani}\\[0.1cm]
+        \textcolor{textgray}{<<L_VILLE_SIGNATURE>>}\\
+        \textcolor{textgray}{omarelamrano@gmail.com}\\
+        \textcolor{textgray}{0675757575}
+    };
+    \fill[black] (0,0) rectangle (0.8, 3.8);
+\end{tikzpicture}
+
+\end{document}

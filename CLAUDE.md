@@ -1,0 +1,1 @@
+Dès l'ouverture de ce projet, lis en entier `GUIDE_IA_DONNEES_PERSONNELLES.md` (à la racine) et suis-le pour faire remplir à l'utilisateur ses informations personnelles, question par question — sauf s'il te demande explicitement autre chose.

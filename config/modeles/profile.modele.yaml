@@ -1,0 +1,88 @@
+# =====================================================================
+#  PROFIL CANDIDAT — utilisé pour remplir les formulaires de candidature
+#  et pour vérifier que le CV / la LM générés gardent tes coordonnées.
+#
+#  RÈGLE : le robot n'invente JAMAIS une réponse. Si un formulaire exige
+#  une information absente d'ici, l'offre passe en « Action manuelle »
+#  avec le nom du champ manquant : ajoute-le ici et remets la ligne
+#  à « À traiter ».
+#
+#  Rempli par FORMULAIRE.bat (relance-le pour modifier une section).
+# =====================================================================
+
+identite:
+  civilite: {{identite.civilite}}               # M. / Mme (laisser vide si tu ne veux pas le renseigner)
+  genre: {{identite.genre}}               # pour les formulaires qui posent la question (Homme / Femme)
+  prenom: {{identite.prenom}}
+  nom: {{identite.nom}}
+  email: {{identite.email}}
+  telephone: {{identite.telephone}}
+  adresse: {{identite.adresse}}
+  code_postal: {{identite.code_postal}}
+  ville: {{identite.ville}}
+  pays: {{identite.pays}}
+  nationalite: {{identite.nationalite}}
+  date_naissance: {{identite.date_naissance}} # JJ/MM/AAAA (optionnel)
+
+liens:
+  linkedin: {{liens.linkedin}}
+  github: {{liens.github}}
+  portfolio: {{liens.portfolio}}
+
+formation:
+  ecole: {{formation.ecole}}
+  diplome: {{formation.diplome}}
+  specialite: {{formation.specialite}}
+  annee_en_cours: {{formation.annee_en_cours}}
+  date_obtention_prevue: {{formation.date_obtention_prevue}}
+
+stage:
+  type: {{stage.type}}
+  duree: {{stage.duree}}              # NE PAS MODIFIER
+  date_debut_souhaitee: {{stage.date_debut_souhaitee}}
+  pays_cibles: {{stage.pays_cibles}}
+  mobilite: {{stage.mobilite}}
+  convention_de_stage: {{stage.convention_de_stage}}
+
+langues:
+{{langues}}
+
+# Réponses types aux questions fréquentes des formulaires.
+# Le robot les recopie telles quelles (ou les reformule sans rien ajouter).
+reponses_standard:
+  # « Êtes-vous autorisé(e) à travailler en France ? »
+  autorisation_travail: {{reponses_standard.autorisation_travail}}
+  autorisation_travail_oui_non: {{reponses_standard.autorisation_travail_oui_non}}
+  # Selon le PAYS de la question :
+  #  « autorisé(e) à travailler en France / dans l'UE / en Europe ? » ;
+  #  « autorisé(e) à travailler dans ton pays (celui de « pays » ci-dessus) ? ».
+  autorisation_travail_france_ou_ue_oui_non: {{reponses_standard.autorisation_travail_france_ou_ue_oui_non}}
+  autorisation_travail_maroc_oui_non: {{reponses_standard.autorisation_travail_maroc_oui_non}}
+  # « Aurez-vous besoin d'un visa / d'un parrainage ? »
+  besoin_visa: {{reponses_standard.besoin_visa}}
+  besoin_visa_oui_non: {{reponses_standard.besoin_visa_oui_non}}
+  # Téléphone : la forme à saisir dépend du formulaire. Le robot choisissait au hasard
+  # entre trois écritures d'un même numéro ; ces deux valeurs lèvent l'ambiguïté.
+  telephone_sans_indicatif: {{reponses_standard.telephone_sans_indicatif}}
+  telephone_avec_indicatif: {{reponses_standard.telephone_avec_indicatif}}
+  # Niveau à choisir dans les menus déroulants « niveau de langue » des formulaires.
+  # Doit refléter la rubrique « langues » ci-dessus : ne jamais sous-déclarer.
+  niveau_anglais: {{reponses_standard.niveau_anglais}}
+  niveau_francais: {{reponses_standard.niveau_francais}}
+  niveau_arabe: {{reponses_standard.niveau_arabe}}
+  gratification_souhaitee: {{reponses_standard.gratification_souhaitee}}
+  # Même chose en CHIFFRES (montant mensuel brut, en euros) pour les champs qui n'acceptent
+  # qu'un nombre (Workday…). Vide = le robot ne peut pas remplir ces champs.
+  gratification_souhaitee_montant: {{reponses_standard.gratification_souhaitee_montant}}
+  comment_avez_vous_connu: {{reponses_standard.comment_avez_vous_connu}}
+  # Consentement à être recontacté par l'entreprise pour de futures opportunités
+  consentement_recontact: {{reponses_standard.consentement_recontact}}
+  handicap: {{reponses_standard.handicap}}
+  permis_conduire: {{reponses_standard.permis_conduire}}
+
+# Informations que le robot ne doit JAMAIS saisir dans un formulaire.
+ne_jamais_communiquer:
+  - numéro de passeport
+  - numéro de sécurité sociale
+  - coordonnées bancaires
+  - mots de passe

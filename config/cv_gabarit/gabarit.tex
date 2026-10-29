@@ -1,0 +1,174 @@
+\documentclass[11pt,a4paper]{extarticle}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[<<BABEL>>]{babel}
+<<BABEL_REGLAGES>>
+\usepackage[top=0.5cm, bottom=0.5cm, left=0.6cm, right=0.6cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{graphicx}
+
+% Couleurs
+\definecolor{primary}{RGB}{15, 15, 15}
+\definecolor{bodytext}{RGB}{50, 50, 50}
+\definecolor{cadregris}{RGB}{215, 215, 212}
+
+\hypersetup{colorlinks=true, linkcolor=primary, urlcolor=primary}
+
+% Design des sections : espacements resserrés
+\titleformat{\section}
+  {\large\bfseries\color{primary}}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{3pt}{2pt}
+
+% Commande gras
+\let\oldtextbf\textbf
+\renewcommand{\textbf}[1]{\textcolor{primary}{\oldtextbf{#1}}}
+
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{0.92}
+
+% Listes optimisées : compact
+\setlist[itemize]{label=\textemdash, labelsep=0.4em, leftmargin=1.6em, itemsep=0.8pt, parsep=0pt, topsep=0.8pt, partopsep=0pt}
+
+\begin{document}
+\pagestyle{empty}
+\color{bodytext}
+
+% ================= HEADER =================
+\noindent
+\begin{minipage}[c]{\textwidth}
+    \centering
+    {\LARGE \textbf{Omar El Amrani}}\\[1pt]
+    {\large \textbf{<<TITRE>>}}\\[1pt]
+    {\normalsize \textit{<<ECOLE>>}}\\[1pt]
+    {\normalsize \textbf{<<STAGE>>}}\\[2pt]
+    \footnotesize
+    \textbf{<<TELEPHONE>>} \href{tel:0675757575}{0675757575} \quad|\quad
+    \textbf{Email:} \href{mailto:omarelamrano@gmail.com}{omarelamrano@gmail.com} \\[3pt]
+    {\large \textbf{\href{https://www.github.com/omar_elamrani/}{www.github.com/omar\_elamrani/}} \quad\textbar\quad \textbf{\href{https://www.linkedin.com/in/omar_elamrani/}{www.linkedin.com/in/omar\_elamrani/}}}
+\end{minipage}
+
+\vspace{1pt}
+
+% ================= PROFILE =================
+\section*{<<S_PROFIL>>}
+<<PROFIL>>
+
+% ================= PROFESSIONAL EXPERIENCE =================
+\section*{<<S_EXPERIENCE>>}
+
+% Entreprise et période : FIXES (écrites par le programme). Seuls le titre et le paragraphe
+% sont adaptés à l'offre.
+\textbf{<<STAGE1>>} \hfill \textit{<<PERIODE1>>} \\
+\textit{<<E1_TITRE>>}
+\begin{itemize}
+\item <<E1_P>>
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{<<STAGE2>>} \hfill \textit{<<PERIODE2>>} \\
+\textit{<<E2_TITRE>>}
+\begin{itemize}
+\item <<E2_P>>
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{<<STAGE3>>} \hfill \textit{<<PERIODE3>>} \\
+\textit{<<E3_TITRE>>}
+\begin{itemize}
+\item <<E3_P>>
+\end{itemize}
+
+% ================= PROJECTS & FREELANCE =================
+\section*{<<S_PROJETS>>}
+
+\textbf{<<P1_TITRE>>} \hfill \textit{<<P1_TECH>>}
+\begin{itemize}
+\item <<P1_P>>
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{<<P2_TITRE>>} \hfill \textit{<<P2_TECH>>}
+\begin{itemize}
+\item <<P2_P>>
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{<<P3_TITRE>>} \hfill \textit{<<P3_TECH>>}
+\begin{itemize}
+\item <<P3_P>>
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{<<P4_TITRE>>} \hfill \textit{<<P4_TECH>>}
+\begin{itemize}
+\item <<P4_P>>
+\end{itemize}
+
+% ================= EDUCATION =================
+\section*{<<S_FORMATION>>}
+
+\textbf{<<F1>>} \hfill \textbf{École XX, Rabat} \\
+\textit{<<F1_AXES>>} <<F1_LISTE>>
+
+\vspace{1pt}
+
+\textbf{<<F2>>} \hfill \textbf{École XX, Rabat}
+
+\vspace{1pt}
+
+\textbf{<<F3>>} \hfill \textbf{Lycée XX, Rabat}
+
+% ================= TECHNICAL SKILLS =================
+\section*{<<S_COMPETENCES>>}
+\begin{itemize}
+    \item \textbf{<<SK1_LABEL>>} <<SK1>>
+    \item \textbf{<<SK2_LABEL>>} <<SK2>>
+\end{itemize}
+
+% ================= CERTIFICATIONS =================
+\section*{Certifications}
+\setlength{\multicolsep}{0pt}
+\begin{multicols}{2}
+\begin{itemize}
+    \item Python for Data Science
+    \item Machine Learning Foundations
+    \item Natural Language Processing Basics
+    \item Cloud Computing Fundamentals
+    \item SQL and Relational Databases
+    \item Docker \& Kubernetes Essentials
+\end{itemize}
+\end{multicols}
+
+\vspace{1pt}
+
+% ================= LANGUAGES & SOFT SKILLS =================
+\begin{minipage}[t]{0.48\textwidth}
+    \section*{<<S_LANGUES>>}
+    \begin{itemize}
+        \item <<L_ARABE>>
+        \item <<L_FRANCAIS>>
+        \item <<L_ANGLAIS>>
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \section*{Soft Skills}
+    \begin{itemize}
+        \item <<SS1>>
+        \item <<SS2>>
+        \item <<SS3>>
+    \end{itemize}
+\end{minipage}
+
+\end{document}

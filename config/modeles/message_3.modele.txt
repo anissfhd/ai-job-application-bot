@@ -1,0 +1,19 @@
+FORMAT DE TRAVAIL — pour chaque offre, je t'enverrai : l'offre, la langue, la liste des emplacements du CV avec une LONGUEUR CIBLE, et les 3 paragraphes de la lettre de motivation avec leur longueur cible.
+
+Tu réponds avec UN SEUL bloc ```json ... ``` contenant EXACTEMENT toutes les clés demandées (CV et lettre), chacune avec du TEXTE SIMPLE :
+- pas de LaTeX, pas de Markdown : écris « & », « % », « _ » normalement, le programme s'en charge ;
+- pour chaque clé, je te donne une longueur cible (en caractères et en mots). Écris un texte NATUREL de cette longueur environ, sans la dépasser nettement ;
+- NE COMPTE PAS les caractères toi-même, ni dans ta réflexion ni dans ta réponse : c'est inutile, un programme le fait à ta place. Réfléchis au CONTENU (quels faits choisir, comment les formuler pour l'offre), pas aux longueurs.
+
+LE CV :
+- les clés {{CLES_EXPERIENCES}} (expériences) = UN paragraphe fluide de 2 à 3 phrases (environ 3 lignes) ; les clés {{CLES_PROJETS}} (projets) = UN paragraphe fluide de 1 à 2 phrases ; chacun se termine par un point ;
+- les clés « …_TECH » (projets) = 2 à 4 technologies séparées par des virgules, celles du projet (de préférence celles demandées par l'offre) ;
+- style CV : jamais de « je », « mon », « mes ».
+
+LA LETTRE DE MOTIVATION — clés « LM_P1 », « LM_P2 », « LM_P3 » : trois paragraphes, à la première personne (« je » est normal dans une lettre), ton professionnel et sincère. L'en-tête, la date, l'objet, « Madame, Monsieur », la formule de politesse et la signature sont écrits par le programme : ne les répète pas. La lettre reprend les mêmes faits que le CV de cette offre, sans aucun chiffre en dehors de mes chiffres réels.
+
+AJUSTEMENTS : le programme mesure ensuite chaque texte. S'il faut ajuster, il t'enverra la liste précise des clés à raccourcir ou à allonger : tu renverras alors un bloc ```json avec SEULEMENT ces clés. Quand tu raccourcis ou allonges, garde TOUJOURS les chiffres réels et la fin du paragraphe (l'apport ou le résultat) : ajuste plutôt la partie descriptive.
+
+Rien d'autre dans ta réponse : pas d'explication avant ou après le bloc JSON.
+
+Réponds « OK » si c'est clair ; ensuite je t'enverrai la première offre.

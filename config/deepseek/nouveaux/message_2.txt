@@ -1,0 +1,60 @@
+MES FAITS RÉELS — la seule matière autorisée pour mon CV et ma lettre.
+
+FORMATION (déjà dans le modèle, à ne pas réécrire)
+- 2024 – aujourd'hui : cycle d'ingénieur en Génie Informatique et IA, École d'Ingénieurs XX, Rabat (Génie logiciel, Machine Learning, NLP, Vision par ordinateur, Cloud, Bases de données).
+- 2022 – 2024 : classes préparatoires intégrées, École d'Ingénieurs XX, Rabat.
+- 2021 – 2022 : baccalauréat Sciences Physiques, Lycée XX, Rabat.
+
+MES 3 STAGES — entreprise et période sont écrites par le programme (fixes). Pour chacun, tu écris un titre adapté à l'offre (E1_TITRE, E2_TITRE, E3_TITRE) et UN paragraphe (E1_P, E2_P, E3_P), uniquement avec les faits réels de CE stage.
+
+STAGE 1 (E1) — Société XX, Rabat — juillet 2026 à août 2026
+Réalisations réelles (tu choisis celle qui correspond le mieux à l'offre) :
+- Modèle de classification de textes : tri automatique des demandes clients par sujet et par urgence (Hugging Face Transformers), jusque-là triées à la main par l'équipe support.
+- Préparation et annotation d'un jeu de données de demandes clients ; évaluation du modèle et suivi de ses erreurs.
+- API FastAPI pour brancher le modèle sur l'outil de support existant, conteneurisée avec Docker.
+- Tableau de bord de suivi des demandes (volumes, délais de traitement, catégories) pour l'équipe support.
+- Extraction automatique d'informations (numéro de commande, produit, date) dans les messages des clients.
+- Assistant de réponse : suggestions de réponses types aux agents du support, à partir des demandes déjà traitées.
+- Technologies utilisées pendant ce stage : Python, Hugging Face Transformers, Scikit-learn, Pandas, NumPy, FastAPI, Docker, Git, SQL, PostgreSQL, Streamlit.
+Résultat chiffré RÉEL de ce stage (le SEUL chiffre autorisé pour Société XX) : temps moyen d'orientation d'une demande réduit de 40 %.
+
+STAGE 2 (E2) — Société YY, Rabat — juillet 2025 à août 2025 — stage Data Analyst
+Réalisations réelles :
+- Nettoyage et rapprochement des données de ventes venant de plusieurs sources.
+- Automatisation du reporting mensuel des ventes (requêtes SQL, tableaux de bord Power BI), jusque-là compilé à la main dans des tableurs.
+Résultat chiffré RÉEL de ce stage (le SEUL chiffre autorisé pour Société YY) : environ deux jours de préparation gagnés chaque mois par l'équipe finance.
+Technologies utilisables pour ce stage (existant en 2025) : Python, Pandas, NumPy, SQL, Power BI, Excel, analyse statistique, visualisation de données.
+
+STAGE 3 (E3) — Société ZZ, Rabat — juillet 2024 à août 2024 — développeur web
+Réalisations réelles :
+- Développement d'une application web interne pour suivre les prêts de matériel entre services, jusque-là notés sur des fiches papier.
+Pas de résultat chiffré pour ce stage : décris l'apport avec des mots (ex. temps gagné sur des tâches manuelles).
+Technologies utilisables pour ce stage (existant en 2024) : Python, Flask, PostgreSQL, HTML/CSS, JavaScript, Git.
+
+Règle sur les chiffres : chacun de ces chiffres réels n'est utilisé que dans SON stage, au plus une fois, sans jamais en changer la valeur.
+
+MISSIONS FREELANCE RÉELLES (janvier 2026 – mai 2026 ; utilisables dans la section « Projets & Missions Freelance »)
+- Chatbot de service client pour une boutique en ligne : réponses automatiques aux questions fréquentes (commandes, livraisons, retours) avec un modèle de langage et une base de connaissances.
+- Tableau de bord des ventes pour un commerce local : import des ventes depuis Excel, indicateurs clés et graphiques mis à jour automatiquement (Python, Streamlit).
+- Automatisation de factures : extraction des montants et des dates de factures PDF vers un fichier Excel (Python, OCR).
+- Site vitrine pour un cabinet de conseil : pages de présentation, formulaire de contact et référencement de base (HTML/CSS, JavaScript).
+
+EXEMPLES DE PROJETS (une petite partie de mes plus de 100 projets de formation : reprends-en un s'il correspond à l'offre ; sinon écris un projet de formation adapté à l'offre, voir règle « Projets » ; résultat seulement, sans chiffre inventé)
+- Détection de maladies des plantes : réseau convolutif pré-entraîné (TensorFlow, Keras) affiné sur un jeu public de photos de feuilles ; l'augmentation de données rend le modèle plus robuste.
+- Analyse de sentiments d'avis clients : modèle TF-IDF classique comparé à un modèle BERT affiné (PyTorch) ; identification de l'approche qui gère le mieux l'ironie.
+- Prévision de la consommation électrique d'un bâtiment : modèles LSTM et Prophet sur des données ouvertes, comparés pour retenir le plus fiable.
+- Application web de recommandation de films : factorisation de matrices à partir des notes des utilisateurs, API REST FastAPI, interface React.
+- Chatbot de questions fréquentes pour une association étudiante : recherche sémantique dans une base de questions-réponses (Python, Sentence-Transformers).
+- Application web de suivi de budget : Angular, Spring Boot, PostgreSQL, conteneurisation Docker.
+- Détection d'objets en temps réel sur vidéo : YOLO et OpenCV, comparaison de la vitesse et de la précision selon la taille du modèle.
+- Pipeline de données : ingestion de fichiers CSV vers PostgreSQL orchestrée par Apache Airflow, avec contrôles de qualité automatiques.
+- Classification de radiographies issues d'un jeu de données public : transfert d'apprentissage avec Keras et analyse des erreurs du modèle.
+
+COMPÉTENCES RÉELLES (liste non exhaustive : ma formation couvre aussi d'autres technologies, dont .NET / C# et Java, utilisables dans la section Compétences si l'offre les demande)
+- IA & Data : Python, TensorFlow, Keras, PyTorch, Scikit-learn, Hugging Face, OpenCV, Pandas, NumPy, NLP, vision par ordinateur, séries temporelles, MLOps.
+- Logiciel & Data engineering : Java, Spring Boot, C/C++, .NET, JavaScript, React, Angular, Node.js, Flask, FastAPI, Docker, Kubernetes, Git, GitHub Actions, Linux, SQL, PostgreSQL, Oracle, MongoDB, Elasticsearch, Apache Kafka, Airflow, AWS, Azure, Power BI, Tableau, Streamlit.
+- ML complémentaires : YOLO, transfert d'apprentissage, systèmes de recommandation, Sentence-Transformers, OCR.
+
+SOFT SKILLS : curiosité, esprit d'initiative, communication, travail en équipe, organisation, sens des priorités, rigueur, autonomie, méthodes agiles (Scrum).
+
+Réponds « OK » si tu as tout noté, puis attends mon message suivant.

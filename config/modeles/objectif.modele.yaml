@@ -1,0 +1,31 @@
+# =====================================================================
+#  OBJECTIF DE RECHERCHE — ce que le candidat cherche.
+#
+#  Tout le robot s'y adapte : consignes envoyées à DeepSeek (formulaires,
+#  CV, lettre, bilan, extraction des offres), email de candidature, filtre
+#  du type de contrat, tri du domaine. Rempli par FORMULAIRE.bat.
+#
+#  Ces valeurs sont recopiées TELLES QUELLES dans des phrases : respecte
+#  les exemples (minuscules, pas de point final).
+# =====================================================================
+
+type: {{type}}                          # stage | alternance | emploi
+contrats_acceptes: {{contrats_acceptes}}           # contrats acceptés parmi : stage, alternance, cdi, cdd, freelance
+
+nom_fr: {{nom_fr}}        # ce que tu cherches, en quelques mots
+nom_en: {{nom_en}}
+sigle: {{sigle}}                           # PFE, PFA… (vide si aucun)
+
+duree_fr: {{duree_fr}}                     # vide s'il n'y a pas de durée (ex. CDI)
+duree_en: {{duree_en}}
+duree_adjectif_en: {{duree_adjectif_en}}           # la durée employée comme adjectif en anglais
+
+date_debut_fr: {{date_debut_fr}}      # vide = disponible dès que possible
+date_debut_en: {{date_debut_en}}
+mois_debut_fr: {{mois_debut_fr}}
+
+conventionne: {{conventionne}}                     # stage sous convention de l'école (true / false)
+
+statut_fr: {{statut_fr}}                     # ta situation, en 2-3 mots
+statut_long_fr: {{statut_long_fr}}
+presentation_fr: {{presentation_fr}}   # une demi-phrase
