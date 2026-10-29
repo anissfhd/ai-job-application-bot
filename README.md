@@ -28,6 +28,7 @@ cover letter to each one with AI, **fills in** the application forms on the comp
 11. [Limitations](#limitations)
 12. [Responsible use](#responsible-use)
 13. [Documentation](#documentation)
+14. [License](#license)
 
 ---
 
@@ -294,3 +295,13 @@ ai-job-application-bot/
 | [GUIDE_INSTALLATION_COMPLET.md](GUIDE_INSTALLATION_COMPLET.md) | French | Full reference: every step, every file location |
 | [GUIDE_FORMULAIRE.md](GUIDE_FORMULAIRE.md) | French | What to answer to each question of `FORMULAIRE.bat` |
 | [GUIDE_IA_DONNEES_PERSONNELLES.md](GUIDE_IA_DONNEES_PERSONNELLES.md) | French | Guide for an AI assistant (e.g. Claude Code) that enters your data for you |
+
+---
+
+## License
+
+Released under the [MIT License](LICENSE) — Copyright (c) 2026 anissfhd.
+
+The GitHub and LinkedIn logos (`input/GitHub.png`, `input/LinkedIn.png`) are trademarks of their
+respective owners and are not covered by this license. The NopeCHA extension is not part of this
+repository and keeps its own license.
