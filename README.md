@@ -66,10 +66,10 @@ flowchart TD
     B -->|"status: À vérifier"| C{"Domain filter<br/>DeepSeek, browser 5"}
     C -->|"in scope: À traiter"| D["Application robot<br/>scripts/orchestrator.py"]
     C -->|"out of scope"| E["Sheet 'Écartées'"]
-    D --> F["1. Read the offer"]
-    F --> G["2. DeepSeek writes the CV and letter texts"]
-    G --> H["3. LaTeX template: one-page PDFs"]
-    H --> I["4. Fill the form, upload, submit<br/>or send by Gmail"]
+    D --> F["Step 1: Read the offer"]
+    F --> G["Step 2: DeepSeek writes the CV and letter texts"]
+    G --> H["Step 3: LaTeX template, one-page PDFs"]
+    H --> I["Step 4: Fill the form, upload, submit<br/>or send by Gmail"]
     I -->|"status, PDFs, comment"| B
 ```
 
